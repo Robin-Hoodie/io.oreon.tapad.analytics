@@ -4,7 +4,6 @@ import io.oreon.tapad.analytics.cache.AnalyticsCache;
 import io.oreon.tapad.analytics.domain.Analytic;
 import io.oreon.tapad.analytics.repository.AnalyticRepository;
 import io.oreon.tapad.analytics.service.AnalyticService;
-import io.oreon.tapad.analytics.service.TimeService;
 import io.restassured.RestAssured;
 import org.junit.After;
 import org.junit.Before;
@@ -16,13 +15,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.cache.Cache;
-import org.springframework.cache.CacheManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.inject.Inject;
 
-import static io.oreon.tapad.analytics.domain.Analytic.Builder.anAnalytic;
 import static io.restassured.RestAssured.given;
 import static javax.servlet.http.HttpServletResponse.SC_CREATED;
 import static javax.servlet.http.HttpServletResponse.SC_OK;

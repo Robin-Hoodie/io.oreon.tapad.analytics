@@ -1,4 +1,10 @@
+embedded:
+  redis:
+    port: 57379
+
 spring:
+  redis:
+    port: ${embedded.redis.port}
   cache:
     redis:
       time-to-live: 3600s #1 hour
