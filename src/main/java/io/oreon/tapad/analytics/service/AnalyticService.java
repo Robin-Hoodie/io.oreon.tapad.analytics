@@ -25,6 +25,7 @@ public class AnalyticService {
         this.analyticsCache = analyticsCache;
     }
 
+    //Retrieve from cache if timestamp is for the current hour, otherwise retrieve from the database
     public Collection<Analytic> findAnalyticsByHourOfTimestamp(Long timestamp) {
         Long fromTimestamp = timeService.floorTimestampToHour(timestamp);
         Long toTimestamp = timeService.ceilTimestampToHour(timestamp);
@@ -34,6 +35,7 @@ public class AnalyticService {
         return this.analyticRepository.findByTimestampBetween(fromTimestamp, toTimestamp);
     }
 
+    //Save to DB & optionally to Cache if timestamp is for the current hour
     public void saveAnalytic(String user, Long timestamp, boolean click, boolean impression) {
         if (click && impression) {
             throw new IllegalArgumentException("An analytic can't be for both a click and an impression");
