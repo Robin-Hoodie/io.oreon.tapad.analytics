@@ -1,11 +1,16 @@
 package io.oreon.tapad.analytics.repository;
 
 import io.oreon.tapad.analytics.domain.Analytic;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.repository.CrudRepository;
+
+import java.util.Collection;
 
 public interface AnalyticRepository extends CrudRepository<Analytic, Long> {
 
-    Analytic findByUser(String user);
+    <S extends Analytic> S save(S entity);
 
-    Iterable<Analytic> findByTimestampBeforeAndTimestampAfter(Long timestampBefore, Long timestampAfter);
+    Collection<Analytic> findByTimestampBetween(Long fromTimestamp, Long toTimestamp);
 }

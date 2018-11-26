@@ -4,59 +4,55 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import java.io.Serializable;
+
 import static javax.persistence.GenerationType.AUTO;
 
 @Entity
-public class Analytic {
+public class Analytic implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = AUTO)
     private Long id;
     private String user;
     private Long timestamp;
-    private Boolean click;
-    private Boolean impression;
+    private boolean click;
+    private boolean impression;
 
     //Used by Jackson
     private Analytic() {}
 
-    private Analytic(String user, Long timestamp, Boolean click, Boolean impression) {
+    private Analytic(String user, Long timestamp, boolean click, boolean impression) {
         this.user = user;
         this.timestamp = timestamp;
         this.click = click;
         this.impression = impression;
     }
 
-    public Long getTimestamp() {
-        return timestamp;
+    public String getUser() {
+        return user;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public Long getTimestamp() {
+        return timestamp;
     }
 
     public Boolean isClick() {
         return click;
     }
 
-    public void setClick(Boolean click) {
-        this.click = click;
-    }
-
     public Boolean isImpression() {
         return impression;
-    }
-
-    public void setImpression(Boolean impression) {
-        this.impression = impression;
     }
 
     public static class Builder {
 
         private String user;
         private Long timestamp;
-        private Boolean click;
-        private Boolean impression;
+        private boolean click;
+        private boolean impression;
 
         public static Builder anAnalytic() {
             return new Builder();
@@ -72,13 +68,13 @@ public class Analytic {
             return this;
         }
 
-        public Builder withClick() {
-            this.click = true;
+        public Builder withClick(boolean click) {
+            this.click = click;
             return this;
         }
 
-        public Builder withImpression() {
-            this.impression = true;
+        public Builder withImpression(boolean impression) {
+            this.impression = impression;
             return this;
         }
 

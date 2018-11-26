@@ -1,0 +1,7 @@
+embedded:
+  redis:
+    port: 57379
+
+spring:
+  redis:
+    port: ${embedded.redis.port}

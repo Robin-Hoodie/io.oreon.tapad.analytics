@@ -1,0 +1,4 @@
+spring:
+  cache:
+    redis:
+      time-to-live: 3600s #1 hour
